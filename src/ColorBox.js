@@ -1,4 +1,5 @@
 import React from "react";
+import "./ColorBox.css";
 
 export default function ColorBox(props) {
   return (
