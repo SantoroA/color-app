@@ -8,7 +8,7 @@ export default function Navbar(props) {
   return (
     <header className="Navbar">
       <div className="logo">
-        <a href="#">ColorHabit</a>
+        <a href="/">ColorHabit</a>
       </div>
       <div className="slider-container">
         <span>level: {level}</span>
