@@ -19,6 +19,17 @@ export default function Palette(props) {
           max={900}
           step={100}
           onAfterChange={changeLevel}
+          trackStyle={{ backgroundColor: "transparent" }}
+          handleStyle={{
+            borderColor: "green",
+            height: 13,
+            width: 13,
+            marginLeft: -7,
+            marginTop: -3,
+            backgroundColor: "green",
+            boxShadow: "none",
+          }}
+          railStyle={{ height: 8 }}
         />
       </div>
       <div className="Palette-colors">
