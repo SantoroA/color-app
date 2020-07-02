@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ColorBox from "./ColorBox";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import Navbar from "./Navbar";
 import "./Palette.css";
 
 export default function Palette(props) {
@@ -12,26 +11,7 @@ export default function Palette(props) {
   }
   return (
     <div className="Palette">
-      <div className="slider">
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onAfterChange={changeLevel}
-          trackStyle={{ backgroundColor: "transparent" }}
-          handleStyle={{
-            borderColor: "green",
-            height: 13,
-            width: 13,
-            marginLeft: -7,
-            marginTop: -3,
-            backgroundColor: "green",
-            boxShadow: "none",
-          }}
-          railStyle={{ height: 8 }}
-        />
-      </div>
+      <Navbar level={level} changeLevel={changeLevel} />
       <div className="Palette-colors">
         {colors[level].map((color) => (
           <ColorBox color={color} />
