@@ -5,7 +5,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export default function ColorBox(props) {
   const [copied, setCopied] = useState(false);
-  const { name, color } = props.color;
+  const { name, hex } = props.color;
   const changeCopyState = () => {
     setCopied(true);
     setTimeout(() => {
@@ -13,15 +13,15 @@ export default function ColorBox(props) {
     }, 1500);
   };
   return (
-    <CopyToClipboard text={color} onCopy={changeCopyState}>
-      <div style={{ background: color }} className="ColorBox">
+    <CopyToClipboard text={hex} onCopy={changeCopyState}>
+      <div style={{ background: hex }} className="ColorBox">
         <div
-          style={{ background: color }}
+          style={{ background: hex }}
           className={`copy-overlay ${copied && "show"}`}
         />
         <div className={`copy-msg ${copied && "show"}`}>
           <h1>COPIED!</h1>
-          <p>{color}</p>
+          <p>{hex}</p>
         </div>
         <div className="copy-container">
           <div className="box-content">
