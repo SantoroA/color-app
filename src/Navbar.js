@@ -4,7 +4,7 @@ import "rc-slider/assets/index.css";
 import "./Navbar.css";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
-
+import { Link } from "react-router-dom";
 import Select from "@material-ui/core/Select";
 import { MenuItem, IconButton } from "@material-ui/core";
 
@@ -23,7 +23,7 @@ export default function Navbar(props) {
   return (
     <header className="Navbar">
       <div className="logo">
-        <a href="/">ColorHabit</a>
+        <Link to="/">ColorHabit</Link>
       </div>
       <div className="slider-container">
         <span>level: {level}</span>
