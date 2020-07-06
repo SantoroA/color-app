@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 import "./Palette.css";
 
 export default function Palette(props) {
@@ -19,6 +20,7 @@ export default function Palette(props) {
         level={level}
         changeFormat={changeFormat}
         changeLevel={changeLevel}
+        showingAllColors
       />
       <div className="Palette-colors">
         {colors[level].map((color) => (
@@ -31,10 +33,7 @@ export default function Palette(props) {
           />
         ))}
       </div>
-      <footer className="Palette-footer">
-        {paletteName}
-        <span className="emoji">{emoji}</span>
-      </footer>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }

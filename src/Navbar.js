@@ -9,7 +9,7 @@ import Select from "@material-ui/core/Select";
 import { MenuItem, IconButton } from "@material-ui/core";
 
 export default function Navbar(props) {
-  const { level, changeLevel, changeFormat } = props;
+  const { level, changeLevel, changeFormat, showingAllColors } = props;
   const [format, setFormat] = useState("hex");
   const [open, setOpen] = useState(false);
   function handleFormatChange(e) {
@@ -25,29 +25,31 @@ export default function Navbar(props) {
       <div className="logo">
         <Link to="/">ColorHabit</Link>
       </div>
-      <div className="slider-container">
-        <span>level: {level}</span>
-        <div className="slider">
-          <Slider
-            defaultValue={level}
-            min={100}
-            max={900}
-            step={100}
-            onAfterChange={changeLevel}
-            trackStyle={{ backgroundColor: "transparent" }}
-            handleStyle={{
-              borderColor: "green",
-              height: 13,
-              width: 13,
-              marginLeft: -7,
-              marginTop: -3,
-              backgroundColor: "green",
-              boxShadow: "none",
-            }}
-            railStyle={{ height: 8 }}
-          />
+      {showingAllColors && (
+        <div className="slider-container">
+          <span>level: {level}</span>
+          <div className="slider">
+            <Slider
+              defaultValue={level}
+              min={100}
+              max={900}
+              step={100}
+              onAfterChange={changeLevel}
+              trackStyle={{ backgroundColor: "transparent" }}
+              handleStyle={{
+                borderColor: "green",
+                height: 13,
+                width: 13,
+                marginLeft: -7,
+                marginTop: -3,
+                backgroundColor: "green",
+                boxShadow: "none",
+              }}
+              railStyle={{ height: 8 }}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="select-container">
         <Select value={format} onChange={handleFormatChange}>
           <MenuItem value="hex">HEX - #fff</MenuItem>
