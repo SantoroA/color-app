@@ -17,7 +17,7 @@ export default function SingleColorPalette(props) {
         key={color.name}
         name={color.name}
         color={color[format]}
-        showLink={false}
+        showingFullPalette={false}
       />
     );
   });
