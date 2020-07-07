@@ -55,7 +55,7 @@ const styles = {
     border: "none",
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     fontSize: "0.8rem",
-    lineHight: "30px",
+    lineHeight: "30px",
     textTransform: "uppercase",
     textDecoration: "none",
     opacity: "0",
