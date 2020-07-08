@@ -3,19 +3,9 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
-
+import styles from "./styles/PaletteStyles";
 import "./Palette.css";
 
-const styles = {
-  Palette: {
-    height: "97vh",
-    display: "flex",
-    flexDirection: "column",
-  },
-  colors: {
-    height: "90%",
-  },
-};
 function Palette(props) {
   const { colors, paletteName, emoji, id } = props.palette;
   const { classes } = props;
