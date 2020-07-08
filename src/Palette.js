@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/PaletteStyles";
-import "./Palette.css";
 
 function Palette(props) {
   const { colors, paletteName, emoji, id } = props.palette;
