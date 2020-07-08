@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import useToggle from "./hooks/useToggle";
-import { ChromePicker } from "react-color";
+import { SketchPicker } from "react-color";
 
 const drawerWidth = 350;
 
@@ -75,7 +75,13 @@ const useStyles = makeStyles((theme) => ({
 
 function NewPaletteForm() {
   const classes = useStyles();
-  const [open, toggleOpen] = useToggle(false);
+  const [open, toggleOpen] = useToggle(true);
+  const [currColor, setCurrColor] = useState("teal");
+  const [colors, setColors] = useState(["purple", "teal"]);
+
+  function addNewColor() {
+    return setColors([...colors, currColor]);
+  }
 
   return (
     <div className={classes.root}>
@@ -125,11 +131,16 @@ function NewPaletteForm() {
             Random Color
           </Button>
         </div>
-        <ChromePicker
-          color="purple"
-          onChangeComplete={(newColor) => console.log(newColor)}
+        <SketchPicker
+          color={currColor}
+          onChangeComplete={(newColor) => setCurrColor(newColor.hex)}
         />
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: currColor }}
+          onClick={addNewColor}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -139,6 +150,11 @@ function NewPaletteForm() {
         })}
       >
         <div className={classes.drawerHeader} />
+        <ul>
+          {colors.map((color) => (
+            <li style={{ backgroundColor: color }}>{color}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
