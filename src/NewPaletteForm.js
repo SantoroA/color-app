@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, toggleOpen] = useToggle(true);
   const [currColor, setCurrColor] = useState("teal");
@@ -89,6 +89,15 @@ function NewPaletteForm() {
       name: newName,
     };
     return setColors([...colors, newColor]);
+  }
+  function handleSubmit() {
+    let newPaletteName = "New Test Palette";
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      colors: colors,
+    };
+    return props.savePalette(newPalette);
   }
 
   useEffect(() => {
@@ -110,6 +119,7 @@ function NewPaletteForm() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        color="default"
       >
         <Toolbar>
           <IconButton
@@ -124,7 +134,14 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              handleSubmit();
+              props.history.push("/");
+            }}
+          >
             Save Palette
           </Button>
         </Toolbar>
@@ -190,7 +207,13 @@ function NewPaletteForm() {
       >
         <div className={classes.drawerHeader} />
         {colors.map((color) => {
-          return <DraggableColorBox color={color.color} name={color.name} />;
+          return (
+            <DraggableColorBox
+              color={color.color}
+              name={color.name}
+              key={color.name}
+            />
+          );
         })}
       </main>
     </div>

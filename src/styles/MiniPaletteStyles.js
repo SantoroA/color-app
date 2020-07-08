@@ -11,7 +11,7 @@ export default {
   },
   colors: {
     backgroundColor: "#dae1e4",
-    height: "100px",
+    height: "90px",
     width: "100%",
     boderRadius: "5px",
     overflow: "hidden",
@@ -23,7 +23,7 @@ export default {
     margin: "0",
     color: "black",
     paddingTop: "0.5rem",
-    fontSize: "1rem",
+    fontSize: "0.8rem",
     position: "relative",
   },
   emoji: {

@@ -20,6 +20,7 @@ function PaletteList(props) {
           {palettes.map((palette) => {
             return (
               <MiniPalette
+                key={palette.id}
                 {...palette}
                 handleClick={() => goToPalette(palette.id)}
               />
