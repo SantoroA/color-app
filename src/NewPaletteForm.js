@@ -88,11 +88,9 @@ function NewPaletteForm() {
       color: currColor,
       name: newName,
     };
-    return setColors([...colors, newColor]), setNewName("");
+    return setColors([...colors, newColor]);
   }
-  function handleChange(e) {
-    return setNewName(e.target.value);
-  }
+
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
       return colors.every(
@@ -159,7 +157,7 @@ function NewPaletteForm() {
         <ValidatorForm onSubmit={addNewColor}>
           <TextValidator
             value={newName}
-            onChange={handleChange}
+            onChange={(e) => setNewName(e.target.value)}
             validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
               "Enter a color name",
