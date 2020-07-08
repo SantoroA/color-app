@@ -124,6 +124,9 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="secondary">
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -154,7 +157,12 @@ function NewPaletteForm() {
           color={currColor}
           onChangeComplete={(newColor) => setCurrColor(newColor.hex)}
         />
-        <ValidatorForm onSubmit={addNewColor}>
+        <ValidatorForm
+          onSubmit={() => {
+            setNewName("");
+            addNewColor();
+          }}
+        >
           <TextValidator
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
