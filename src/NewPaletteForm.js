@@ -12,8 +12,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import useToggle from "./hooks/useToggle";
-import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from "./DraggableColorList";
 import { SketchPicker } from "react-color";
+import { arrayMove } from "array-move";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const drawerWidth = 350;
@@ -83,6 +84,9 @@ function NewPaletteForm(props) {
   const [newName, setNewName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
   const [colors, setColors] = useState([]);
+
+  const onSortEnd = ({ oldIndex, newIndex }) =>
+    setColors(arrayMove(colors, oldIndex, newIndex));
 
   function addNewColor() {
     const newColor = {
@@ -225,16 +229,12 @@ function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map((color) => {
-          return (
-            <DraggableColorBox
-              color={color.color}
-              name={color.name}
-              key={color.name}
-              handleClick={() => removeColor(color.name)}
-            />
-          );
-        })}
+        <DraggableColorList
+          onSortEnd={onSortEnd}
+          colors={colors}
+          removeColor={removeColor}
+          axis="xy"
+        />
       </main>
     </div>
   );
