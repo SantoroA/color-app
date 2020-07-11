@@ -99,6 +99,10 @@ function NewPaletteForm(props) {
     };
     return props.savePalette(newPalette);
   }
+  function removeColor(colorName) {
+    const reducedColors = colors.filter((color) => color.name !== colorName);
+    return setColors(reducedColors);
+  }
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
@@ -227,6 +231,7 @@ function NewPaletteForm(props) {
               color={color.color}
               name={color.name}
               key={color.name}
+              handleClick={() => removeColor(color.name)}
             />
           );
         })}
