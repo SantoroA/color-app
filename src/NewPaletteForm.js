@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
+import PaletteFormNav from "./PaletteFormNav";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import useToggle from "./hooks/useToggle";
@@ -83,7 +80,6 @@ function NewPaletteForm(props) {
   const [open, toggleOpen] = useToggle(true);
   const [currColor, setCurrColor] = useState("teal");
   const [newName, setNewName] = useState("");
-  const [newPaletteName, setNewPaletteName] = useState("");
   const [colors, setColors] = useState(props.palettes[0].colors);
   const paletteIsFull = colors.length >= maxColors;
 
@@ -97,14 +93,7 @@ function NewPaletteForm(props) {
     };
     return setColors([...colors, newColor]);
   }
-  function handleSubmit() {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      colors: colors,
-    };
-    return props.savePalette(newPalette);
-  }
+
   function removeColor(colorName) {
     const reducedColors = colors.filter((color) => color.name !== colorName);
     return setColors(reducedColors);
@@ -118,18 +107,21 @@ function NewPaletteForm(props) {
     const randomColor = allColors[rand];
     setColors([...colors, randomColor]);
   }
-
+  function handleSubmit(newPaletteName) {
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      colors: colors,
+    };
+    return props.savePalette(newPalette);
+  }
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
       return colors.every(
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
       );
     });
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
-      return props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      );
-    });
+
     ValidatorForm.addValidationRule("isColorUnique", (value) => {
       return colors.every(({ color }) => color !== currColor);
     });
@@ -137,49 +129,14 @@ function NewPaletteForm(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-        color="default"
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-          <ValidatorForm
-            onSubmit={() => {
-              handleSubmit();
-              props.history.push("/");
-            }}
-          >
-            <TextValidator
-              value={newPaletteName}
-              label="Palette Name"
-              onChange={(e) => setNewPaletteName(e.target.value)}
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={[
-                "Enter a palette name",
-                "This name is already taken",
-              ]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-          </ValidatorForm>
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav
+        handleSubmit={handleSubmit}
+        palettes={props.palettes}
+        open={open}
+        toggleOpen={toggleOpen}
+        classes={classes}
+        history={props.history}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
