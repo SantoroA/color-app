@@ -116,7 +116,6 @@ function NewPaletteForm(props) {
         palettes={props.palettes}
         open={open}
         toggleOpen={toggleOpen}
-        classes={classes}
         history={props.history}
       />
       <Drawer
