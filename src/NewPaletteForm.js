@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import DraggableColorList from "./DraggableColorList";
+import PaletteFormNav from "./PaletteFormNav";
+import ColorPickerForm from "./ColorPickerForm";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import PaletteFormNav from "./PaletteFormNav";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -9,10 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import useToggle from "./hooks/useToggle";
-import DraggableColorList from "./DraggableColorList";
-import { SketchPicker } from "react-color";
 import { arrayMove } from "react-sortable-hoc";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const drawerWidth = 350;
 
@@ -78,19 +77,13 @@ function NewPaletteForm(props) {
   const maxColors = 20;
   const classes = useStyles();
   const [open, toggleOpen] = useToggle(true);
-  const [currColor, setCurrColor] = useState("teal");
-  const [newName, setNewName] = useState("");
   const [colors, setColors] = useState(props.palettes[0].colors);
   const paletteIsFull = colors.length >= maxColors;
 
   const onSortEnd = ({ oldIndex, newIndex }) =>
     setColors(arrayMove(colors, oldIndex, newIndex));
 
-  function addNewColor() {
-    const newColor = {
-      color: currColor,
-      name: newName,
-    };
+  function addNewColor(newColor) {
     return setColors([...colors, newColor]);
   }
 
@@ -115,17 +108,6 @@ function NewPaletteForm(props) {
     };
     return props.savePalette(newPalette);
   }
-  useEffect(() => {
-    ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
-      return colors.every(
-        ({ name }) => name.toLowerCase() !== value.toLowerCase()
-      );
-    });
-
-    ValidatorForm.addValidationRule("isColorUnique", (value) => {
-      return colors.every(({ color }) => color !== currColor);
-    });
-  });
 
   return (
     <div className={classes.root}>
@@ -166,36 +148,11 @@ function NewPaletteForm(props) {
             Random Color
           </Button>
         </div>
-        <SketchPicker
-          color={currColor}
-          onChangeComplete={(newColor) => setCurrColor(newColor.hex)}
+        <ColorPickerForm
+          colors={colors}
+          addNewColor={addNewColor}
+          paletteIsFull={paletteIsFull}
         />
-        <ValidatorForm
-          onSubmit={() => {
-            setNewName("");
-            addNewColor();
-          }}
-        >
-          <TextValidator
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            validators={["required", "isColorNameUnique", "isColorUnique"]}
-            errorMessages={[
-              "Enter a color name",
-              "This color name is taken",
-              "This color is taken",
-            ]}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            disabled={paletteIsFull}
-            style={{ backgroundColor: paletteIsFull ? "grey" : currColor }}
-          >
-            {paletteIsFull ? "Palette Full" : "Add Color"}
-          </Button>
-        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {
