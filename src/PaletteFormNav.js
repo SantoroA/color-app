@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import PaletteMetaForm from "./PaletteMetaForm";
@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+
 import useToggle from "./hooks/useToggle";
 
 const drawerWidth = 350;
@@ -105,6 +105,7 @@ function PaletteFormNav(props) {
           history={props.history}
           palettes={palettes}
           handleSubmit={handleSubmit}
+          toggleFormShowing={toggleFormShowing}
         />
       )}
     </div>
