@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: "flex",
+    alignItems: "center",
   },
   drawerHeader: {
     display: "flex",
@@ -70,6 +72,20 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  container: {
+    width: "90%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+  },
+  buttons: {
+    width: "100%",
+  },
+  button: {
+    width: "50%",
   },
 }));
 
@@ -133,25 +149,35 @@ function NewPaletteForm(props) {
           </IconButton>
         </div>
         <Divider />
-        <Typography variant="h4">Design Your Palette</Typography>
-        <div>
-          <Button onClick={clearColors} variant="contained" color="secondary">
-            Clear Palette
-          </Button>
-          <Button
-            onClick={addRandomColor}
-            variant="contained"
-            disabled={paletteIsFull}
-            color="primary"
-          >
-            Random Color
-          </Button>
+        <div className={classes.container}>
+          <Typography gutterBottom variant="h4">
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              className={classes.button}
+              onClick={clearColors}
+              variant="contained"
+              color="secondary"
+            >
+              Clear Palette
+            </Button>
+            <Button
+              onClick={addRandomColor}
+              variant="contained"
+              disabled={paletteIsFull}
+              color="primary"
+              className={classes.button}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            colors={colors}
+            addNewColor={addNewColor}
+            paletteIsFull={paletteIsFull}
+          />
         </div>
-        <ColorPickerForm
-          colors={colors}
-          addNewColor={addNewColor}
-          paletteIsFull={paletteIsFull}
-        />
       </Drawer>
       <main
         className={clsx(classes.content, {

@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { withStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import { SketchPicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-export default function ColorPickerForm(props) {
+const styles = {
+  picker: {
+    width: "93% !important",
+    marginTop: "2rem",
+  },
+  addColor: {
+    width: "100%",
+    padding: "1 rem",
+    marginTop: "1rem",
+    fontSize: "2 rem",
+  },
+  colorNameInput: {
+    width: "100%",
+    height: "70px",
+  },
+};
+
+function ColorPickerForm(props) {
   const [currColor, setCurrColor] = useState("teal");
   const [newName, setNewName] = useState("");
-  const { paletteIsFull, addNewColor, colors } = props;
+  const { paletteIsFull, addNewColor, colors, classes } = props;
   function handleSubmit() {
     const newColor = {
       color: currColor,
@@ -30,6 +48,7 @@ export default function ColorPickerForm(props) {
       <SketchPicker
         color={currColor}
         onChangeComplete={(newColor) => setCurrColor(newColor.hex)}
+        className={classes.picker}
       />
       <ValidatorForm
         onSubmit={() => {
@@ -39,6 +58,10 @@ export default function ColorPickerForm(props) {
       >
         <TextValidator
           value={newName}
+          variant="filled"
+          className={classes.colorNameInput}
+          margin="normal"
+          placeholder="Color Name"
           onChange={(e) => setNewName(e.target.value)}
           validators={["required", "isColorNameUnique", "isColorUnique"]}
           errorMessages={[
@@ -52,6 +75,7 @@ export default function ColorPickerForm(props) {
           color="primary"
           type="submit"
           disabled={paletteIsFull}
+          className={classes.addColor}
           style={{ backgroundColor: paletteIsFull ? "grey" : currColor }}
         >
           {paletteIsFull ? "Palette Full" : "Add Color"}
@@ -60,3 +84,4 @@ export default function ColorPickerForm(props) {
     </div>
   );
 }
+export default withStyles(styles)(ColorPickerForm);
