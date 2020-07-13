@@ -10,7 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 function PaletteMetaForm(props) {
-  const [open, toggleOpen] = useToggle(false);
+  const [open, toggleOpen] = useToggle(true);
   const [newPaletteName, setNewPaletteName] = useState("");
   const { handleSubmit } = props;
 
@@ -22,54 +22,45 @@ function PaletteMetaForm(props) {
     });
   });
   return (
-    <div>
-      <div>
-        <Button variant="outlined" color="primary" onClick={toggleOpen}>
-          Open form dialog
-        </Button>
-        <Dialog
-          open={open}
-          onClose={toggleOpen}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
-            </DialogContentText>
-            <ValidatorForm
-              onSubmit={() => {
-                handleSubmit(newPaletteName);
-                props.history.push("/");
-              }}
-            >
-              <TextValidator
-                value={newPaletteName}
-                label="Palette Name"
-                onChange={(e) => setNewPaletteName(e.target.value)}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={[
-                  "Enter a palette name",
-                  "This name is already taken",
-                ]}
-              />
-              <Button variant="contained" color="primary" type="submit">
-                Save Palette
-              </Button>
-            </ValidatorForm>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={toggleOpen} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={toggleOpen} color="primary">
-              Subscribe
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </div>
+    <Dialog
+      open={open}
+      onClose={toggleOpen}
+      aria-labelledby="form-dialog-title"
+    >
+      <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
+      <ValidatorForm
+        onSubmit={() => {
+          handleSubmit(newPaletteName);
+          props.history.push("/");
+        }}
+      >
+        <DialogContent>
+          <DialogContentText>
+            Please enter a unique name for your new palette.
+          </DialogContentText>
+          <TextValidator
+            value={newPaletteName}
+            label="Palette Name"
+            fullWidth
+            margin="normal"
+            onChange={(e) => setNewPaletteName(e.target.value)}
+            validators={["required", "isPaletteNameUnique"]}
+            errorMessages={[
+              "Enter a palette name",
+              "This name is already taken",
+            ]}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={toggleOpen} color="primary">
+            Cancel
+          </Button>
+          <Button variant="contained" color="primary" type="submit">
+            Save Palette
+          </Button>
+        </DialogActions>
+      </ValidatorForm>
+    </Dialog>
   );
 }
 export default PaletteMetaForm;
