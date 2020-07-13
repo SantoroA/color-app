@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import PaletteMetaForm from "./PaletteMetaForm";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -42,15 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 function PaletteFormNav(props) {
   const classes = useStyles();
-  const { open, toggleOpen, handleSubmit } = props;
-  const [newPaletteName, setNewPaletteName] = useState("");
-  useEffect(() => {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
-      return props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      );
-    });
-  });
+  const { open, toggleOpen, handleSubmit, palettes } = props;
 
   return (
     <div className={classes.root}>
@@ -77,26 +70,11 @@ function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <ValidatorForm
-            onSubmit={() => {
-              handleSubmit(newPaletteName);
-              props.history.push("/");
-            }}
-          >
-            <TextValidator
-              value={newPaletteName}
-              label="Palette Name"
-              onChange={(e) => setNewPaletteName(e.target.value)}
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={[
-                "Enter a palette name",
-                "This name is already taken",
-              ]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm
+            history={props.history}
+            palettes={palettes}
+            handleSubmit={handleSubmit}
+          />
           <Link to="/">
             <Button variant="contained" color="secondary">
               Go Back
