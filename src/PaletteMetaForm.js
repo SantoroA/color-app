@@ -14,14 +14,6 @@ function PaletteMetaForm(props) {
   const [newPaletteName, setNewPaletteName] = useState("");
   const { handleSubmit, toggleFormShowing } = props;
 
-  //   function savePalette(emoji) {
-  //     const newPalette = {
-  //       paletteName: newPaletteName,
-  //       emoji: emoji.native,
-  //     };
-  //     return handleSubmit(newPalette);
-  //   }
-
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
       return props.palettes.every(

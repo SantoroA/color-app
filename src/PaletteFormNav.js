@@ -8,9 +8,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-
+import PaletteIcon from "@material-ui/icons/Palette";
 import useToggle from "./hooks/useToggle";
 
 const drawerWidth = 350;
@@ -49,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: "0 0.5rem",
   },
+  hide: {
+    display: "none",
+  },
 }));
 
 function PaletteFormNav(props) {
@@ -74,7 +76,7 @@ function PaletteFormNav(props) {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <PaletteIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Create a Palette

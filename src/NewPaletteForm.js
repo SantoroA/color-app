@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   drawerHeader: {
+    width: "100%",
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     height: "calc(100vh - 64px)",
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
