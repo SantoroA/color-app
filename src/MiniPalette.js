@@ -4,7 +4,16 @@ import styles from "./styles/MiniPaletteStyles";
 import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
 
 function MiniPalette(props) {
-  const { classes, paletteName, emoji, colors, handleClick } = props;
+  const {
+    classes,
+    paletteName,
+    emoji,
+    colors,
+    handleClick,
+    deletePalette,
+    id,
+  } = props;
+
   const miniColorBoxes = colors.map((color) => {
     return (
       <div
@@ -18,7 +27,13 @@ function MiniPalette(props) {
   return (
     <div className={classes.root} onClick={handleClick}>
       <div className={classes.delete}>
-        <DeleteForeverRoundedIcon className={classes.deleteIcon} />
+        <DeleteForeverRoundedIcon
+          onClick={(e) => {
+            e.stopPropagation();
+            deletePalette(id);
+          }}
+          className={classes.deleteIcon}
+        />
       </div>
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>

@@ -16,6 +16,9 @@ function App() {
       return palette.id === id;
     });
   }
+  function deletePalette(id) {
+    setPalettes(palettes.filter((palette) => palette.id !== id));
+  }
   function savePalette(newPalette) {
     return setPalettes([...palettes, newPalette]);
   }
@@ -41,7 +44,11 @@ function App() {
           exact
           path="/"
           render={(routeProps) => (
-            <PaletteList palettes={palettes} {...routeProps} />
+            <PaletteList
+              palettes={palettes}
+              deletePalette={deletePalette}
+              {...routeProps}
+            />
           )}
         />
         <Route
