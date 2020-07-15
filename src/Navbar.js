@@ -29,7 +29,7 @@ function Navbar(props) {
       {showingAllColors && (
         <div className="slider-container">
           <span>level: {level}</span>
-          <div>
+          <div className={classes.slider}>
             <Slider
               defaultValue={level}
               min={100}
@@ -39,14 +39,14 @@ function Navbar(props) {
               trackStyle={{ backgroundColor: "transparent" }}
               handleStyle={{
                 borderColor: "green",
-                height: 13,
-                width: 13,
+                height: "13px",
+                width: "13px",
                 marginLeft: -7,
                 marginTop: -3,
                 backgroundColor: "green",
                 boxShadow: "none",
               }}
-              railStyle={{ height: 8 }}
+              railStyle={{ height: "8px" }}
             />
           </div>
         </div>

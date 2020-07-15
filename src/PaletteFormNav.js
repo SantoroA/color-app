@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import PaletteIcon from "@material-ui/icons/Palette";
 import useToggle from "./hooks/useToggle";
+import sizes from "./styles/sizes";
 
 const drawerWidth = 350;
 
@@ -44,9 +45,16 @@ const useStyles = makeStyles((theme) => ({
     "& a": {
       textDecoration: "none",
     },
+    [sizes.down("xs")]: {
+      marginRight: 0,
+    },
   },
   button: {
     margin: "0 0.5rem",
+    [sizes.down("sm")]: {
+      padding: "0.5rem",
+      lineHeight: "1rem",
+    },
   },
   hide: {
     display: "none",
