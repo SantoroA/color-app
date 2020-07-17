@@ -10,8 +10,9 @@ function MiniPalette(props) {
     emoji,
     colors,
     handleClick,
-    deletePalette,
     id,
+    openDialog,
+    setDeletingId,
   } = props;
 
   const miniColorBoxes = colors.map((color) => {
@@ -30,7 +31,8 @@ function MiniPalette(props) {
         <DeleteForeverRoundedIcon
           onClick={(e) => {
             e.stopPropagation();
-            deletePalette(id);
+            openDialog(id);
+            setDeletingId(id);
           }}
           className={classes.deleteIcon}
         />

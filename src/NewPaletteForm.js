@@ -189,6 +189,7 @@ function NewPaletteForm(props) {
           colors={colors}
           removeColor={removeColor}
           axis="xy"
+          distance={20}
         />
       </main>
     </div>
