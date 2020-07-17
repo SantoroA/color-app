@@ -35,6 +35,7 @@ function ColorPickerForm(props) {
         className={classes.picker}
       />
       <ValidatorForm
+        instantValidate={false}
         onSubmit={() => {
           setNewName("");
           handleSubmit();

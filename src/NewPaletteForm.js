@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import useToggle from "./hooks/useToggle";
+import seedColors from "./seedColors";
 
 const drawerWidth = 350;
 
@@ -94,7 +95,7 @@ function NewPaletteForm(props) {
   const maxColors = 20;
   const classes = useStyles();
   const [open, toggleOpen] = useToggle(true);
-  const [colors, setColors] = useState(props.palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
   const paletteIsFull = colors.length >= maxColors;
 
   const onSortEnd = ({ oldIndex, newIndex }) =>
@@ -112,9 +113,17 @@ function NewPaletteForm(props) {
     return setColors([]);
   }
   function addRandomColor() {
-    const allColors = props.palettes.map((p) => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    const allColors = seedColors.map((p) => p.colors).flat();
+    let rand;
+    let randomColor;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      isDuplicateColor = colors.some(
+        (color) => color.name === randomColor.name
+      );
+    }
     setColors([...colors, randomColor]);
   }
   function handleSubmit(newPalette) {
