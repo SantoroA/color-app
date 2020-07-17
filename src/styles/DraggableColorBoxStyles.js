@@ -40,6 +40,7 @@ const styles = {
         : "rgba(0,0,0,0.7)",
 
     letterSpacing: "1px",
+    fontWeight: "600",
     fontSize: "11px",
     textTransform: "uppercase",
     display: "flex",

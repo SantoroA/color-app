@@ -92,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewPaletteForm(props) {
+  const allColors = seedColors.map((p) => p.colors).flat();
   const maxColors = 20;
   const classes = useStyles();
   const [open, toggleOpen] = useToggle(true);
@@ -113,15 +114,15 @@ function NewPaletteForm(props) {
     return setColors([]);
   }
   function addRandomColor() {
-    const allColors = seedColors.map((p) => p.colors).flat();
     let rand;
     let randomColor;
     let isDuplicateColor = true;
     while (isDuplicateColor) {
       rand = Math.floor(Math.random() * allColors.length);
       randomColor = allColors[rand];
+      console.log(randomColor);
       isDuplicateColor = colors.some(
-        (color) => color.name === randomColor.name
+        (color) => color.name === randomColor.name // eslint-disable-line no-loop-func
       );
     }
     setColors([...colors, randomColor]);

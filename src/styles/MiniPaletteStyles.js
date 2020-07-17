@@ -24,12 +24,11 @@ export default {
     display: "flex",
     justifyContent: "center",
     color: "#60072b",
-    fontFamily: '"Shadows Into Light", cursive',
     alignItems: "center",
     margin: "0",
-
+    fontWeight: "500",
     paddingTop: "0.5rem",
-    fontSize: "1.3rem",
+    fontSize: "1.2rem",
     position: "relative",
   },
   emoji: {
