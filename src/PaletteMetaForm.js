@@ -31,6 +31,7 @@ function PaletteMetaForm(props) {
               paletteName: newPaletteName,
               emoji: e.native,
             });
+            setStage("");
             props.history.push("/");
           }}
           title="Pick a Palette Emoji"
