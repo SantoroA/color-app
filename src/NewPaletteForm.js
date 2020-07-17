@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { arrayMove } from "react-sortable-hoc";
 import DraggableColorList from "./DraggableColorList";
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
@@ -11,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import useToggle from "./hooks/useToggle";
-import { arrayMove } from "react-sortable-hoc";
 
 const drawerWidth = 350;
 

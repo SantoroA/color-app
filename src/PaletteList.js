@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Link } from "react-router-dom";
 import useToggle from "./hooks/useToggle";
 import MiniPalette from "./MiniPalette";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/PaletteListStyles";
-import { Link } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Dialog from "@material-ui/core/Dialog";
 import Avatar from "@material-ui/core/Avatar";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -53,7 +53,7 @@ function PaletteList(props) {
                   key={palette.id}
                   id={palette.id}
                   {...palette}
-                  handleClick={() => goToPalette(palette.id)}
+                  handleClick={goToPalette}
                 />
               </CSSTransition>
             );

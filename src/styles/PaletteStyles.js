@@ -2,12 +2,12 @@ import sizes from "./sizes";
 
 export default {
   Palette: {
-    height: "97vh",
+    height: "100vh",
     display: "flex",
     flexDirection: "column",
   },
   colors: {
-    height: "90%",
+    height: "100%",
   },
   goBack: {
     width: "20%",

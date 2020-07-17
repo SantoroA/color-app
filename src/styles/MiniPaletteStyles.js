@@ -51,7 +51,7 @@ export default {
     width: "20px",
     height: "20px",
     position: "absolute",
-    zIndex: 10,
+    zIndex: 100,
     right: "0",
     top: "0",
     padding: "10px",

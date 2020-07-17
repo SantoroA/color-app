@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/styles";
-import Button from "@material-ui/core/Button";
 import { SketchPicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { withStyles } from "@material-ui/styles";
+import Button from "@material-ui/core/Button";
 import styles from "./styles/ColorPickerFormStyles";
 
 function ColorPickerForm(props) {

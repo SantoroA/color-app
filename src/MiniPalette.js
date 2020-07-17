@@ -1,6 +1,6 @@
 import React from "react";
-import { withStyles } from "@material-ui/styles";
 import styles from "./styles/MiniPaletteStyles";
+import { withStyles } from "@material-ui/styles";
 import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
 
 function MiniPalette(props) {
@@ -26,7 +26,7 @@ function MiniPalette(props) {
   });
 
   return (
-    <div className={classes.root} onClick={handleClick}>
+    <div className={classes.root} onClick={() => handleClick(id)}>
       <div className={classes.container}>
         <div className={classes.delete}>
           <DeleteForeverRoundedIcon
