@@ -25,6 +25,7 @@ export default {
     fontSize: "3rem",
     color: "#60072b",
     fontFamily: '"Shadows Into Light", cursive',
+    marginBottom: "0.8rem",
   },
   container: {
     width: "50%",
@@ -36,17 +37,27 @@ export default {
       width: "80%",
     },
     [sizes.down("xs")]: {
-      width: "70%",
+      width: "60%",
     },
   },
+
   nav: {
     display: "flex",
+    flexDirection: "column",
     width: "100%",
     justifyContent: "space-between",
     color: "white",
     alignItems: "center",
-    "& a": {
-      color: "white",
+    "& button": {
+      display: "flex",
+      flexDirection: "row",
+      marginBottom: "2rem",
+      borderRadius: "1rem",
+      BackgroundColor: "#60072b",
+      "& a": {
+        color: "white",
+        textDecoration: "none",
+      },
     },
   },
   palettes: {

@@ -1,32 +1,35 @@
 export default {
   root: {
-    position: "relative",
-
-    backgroundColor: "white",
-    borderRadius: "5px",
-    padding: "0.5rem",
-    postion: "relative",
-    overflow: "hidden",
     cursor: "pointer",
     "&:hover svg": {
       opacity: "1",
     },
   },
+  container: {
+    overflow: "hidden",
+    position: "relative",
+    backgroundColor: "white",
+    borderRadius: "10px",
+    padding: "0.7rem",
+    postion: "relative",
+  },
   colors: {
     backgroundColor: "#dae1e4",
-    height: "90px",
+    height: "130px",
     width: "100%",
-    boderRadius: "5px",
+    boderRadius: "10px",
     overflow: "hidden",
   },
   title: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    color: "#60072b",
+    fontFamily: '"Shadows Into Light", cursive',
     alignItems: "center",
     margin: "0",
-    color: "black",
+
     paddingTop: "0.5rem",
-    fontSize: "0.8rem",
+    fontSize: "1.3rem",
     position: "relative",
   },
   emoji: {

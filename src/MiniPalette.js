@@ -27,17 +27,19 @@ function MiniPalette(props) {
 
   return (
     <div className={classes.root} onClick={handleClick}>
-      <div className={classes.delete}>
-        <DeleteForeverRoundedIcon
-          onClick={(e) => {
-            e.stopPropagation();
-            openDialog(id);
-            setDeletingId(id);
-          }}
-          className={classes.deleteIcon}
-        />
+      <div className={classes.container}>
+        <div className={classes.delete}>
+          <DeleteForeverRoundedIcon
+            onClick={(e) => {
+              e.stopPropagation();
+              openDialog(id);
+              setDeletingId(id);
+            }}
+            className={classes.deleteIcon}
+          />
+        </div>
+        <div className={classes.colors}>{miniColorBoxes}</div>
       </div>
-      <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {paletteName}
         <spam className={classes.emoji}>{emoji}</spam>

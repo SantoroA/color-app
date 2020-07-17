@@ -14,6 +14,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
+import Button from "@material-ui/core/Button";
+import CreateIcon from "@material-ui/icons/Create";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 
@@ -30,7 +32,14 @@ function PaletteList(props) {
       <div className={classes.container}>
         <nav className={classes.nav}>
           <h1 className={classes.heading}>ColorHabit</h1>
-          <Link to="/palette/new">Create New Palette</Link>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<CreateIcon />}
+          >
+            <Link to="/palette/new">Create New Palette</Link>
+          </Button>
         </nav>
 
         <TransitionGroup className={classes.palettes}>
